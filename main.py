@@ -48,3 +48,11 @@ if st.button('시작'):
                     file_name=output_path,
                     mime="video/mp4"
                 )
+
+st.title("Let's all live together.!")
+
+
+ko_fi_button_html = '''
+<a href='https://ko-fi.com/J3J2V8EYP' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://storage.ko-fi.com/cdn/kofi2.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
+'''
+st.markdown(ko_fi_button_html, unsafe_allow_html=True)

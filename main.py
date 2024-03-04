@@ -39,7 +39,7 @@ video_path = st.text_input(
         # placeholder=st.session_state.placeholder,
     )
 
-if st.button('시작'):
+if st.button('start download'):
 
     with st.spinner('Please wait a moment...'):
         

@@ -21,12 +21,12 @@ def is_valid_youtube_url(url):
 
 def download_youtube_video(url, output_path):
     if not is_valid_youtube_url(url):
-        raise ValueError('유효한 YouTube URL이 아닙니다.')
+        raise ValueError('This is not a valid YouTube URL.')
     yt = YouTube(url)
     ys = yt.streams.get_highest_resolution()
     ys.download(filename=output_path)
 
-st.write("## 유튜브 영상 다운로드")
+st.write("## Download a YouTube video")
 
 
 video_path = st.text_input(
@@ -38,7 +38,7 @@ video_path = st.text_input(
 
 if st.button('시작'):
 
-    with st.spinner('잠시만 기다려주세요...'):
+    with st.spinner('Please wait a moment...'):
         
         download_youtube_video(video_path, output_path)
         with open(output_path, "rb") as file:    

@@ -21,10 +21,13 @@ def is_valid_youtube_url(url):
 
 def download_youtube_video(url, output_path):
     if not is_valid_youtube_url(url):
-        raise ValueError('This is not a valid YouTube URL.')
+        st.error('This is not a valid YouTube URL.')
+        return False
+        # raise ValueError('This is not a valid YouTube URL.')
     yt = YouTube(url)
     ys = yt.streams.get_highest_resolution()
     ys.download(filename=output_path)
+    return True
 
 st.write("## Download a YouTube video")
 
@@ -40,19 +43,19 @@ if st.button('시작'):
 
     with st.spinner('Please wait a moment...'):
         
-        download_youtube_video(video_path, output_path)
-        with open(output_path, "rb") as file:    
-            btn = st.download_button(
-                    label="Download file",
-                    data=file,
-                    file_name=output_path,
-                    mime="video/mp4"
-                )
+        if download_youtube_video(video_path, output_path):
+            with open(output_path, "rb") as file:    
+                btn = st.download_button(
+                        label="Download file",
+                        data=file,
+                        file_name=output_path,
+                        mime="video/mp4"
+                    )
 
-st.title("Let's all live together.!")
+            st.write("##### Let's all live together.!")
 
 
-ko_fi_button_html = '''
-<a href='https://ko-fi.com/J3J2V8EYP' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://storage.ko-fi.com/cdn/kofi2.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
-'''
-st.markdown(ko_fi_button_html, unsafe_allow_html=True)
+            ko_fi_button_html = '''
+            <a href='https://ko-fi.com/J3J2V8EYP' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://storage.ko-fi.com/cdn/kofi2.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
+            '''
+            st.markdown(ko_fi_button_html, unsafe_allow_html=True)
